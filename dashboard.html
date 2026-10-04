@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body{
+            margin:0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background: #f4f4f4;
+        }
+
+        /* Sidebar */
+        .sidebar{
+            width: 220px;
+            background: #2c3e50;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul{
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li{
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover{
+            background: #34495e;
+        }
+
+        /* Main Content */
+        .main{
+            flex: 1;
+            padding: 20px;
+        }
+
+        .main h1{
+            margin-bottom: 20px;
+        }
+
+        .card{
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+        }
+
+        /* Logout button */
+        button{
+            margin-top: 20px;
+            padding: 8px 15px;
+            border: none;
+            background: red;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>My Dashboard</h2>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li>Settings</li>
+            <li>Logout</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <h1>Welcome to the Dashboard 🎉</h1>
+        <div class="card">Users: 120</div>
+        <div class="card">Sales: $500</div>
+        <div class="card">Messages: 15</div>
+
+        <button onclick="alert('You clicked logout!')">Logout</button>
+    </div>
+
+</body>
+</html>

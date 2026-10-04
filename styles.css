@@ -1,0 +1,1061 @@
+/* ==========================================================================
+   ResultSeal — Design System & Stylesheet
+   National Engineering College (NEC), K.R. Nagar, Kovilpatti
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Color Tokens */
+  --color-ink: #1B2A4A;
+  --color-ink-light: #2C3E66;
+  --color-paper: #F7F3EA;
+  --color-paper-card: #FFFFFF;
+  --color-paper-subtle: #EFE9DB;
+  --color-brass: #AD8A4E;
+  --color-brass-glow: rgba(173, 138, 78, 0.25);
+  --color-brass-dark: #8A6D3A;
+  --color-slate: #5B6B82;
+  --color-good: #3E7C59;
+  --color-good-bg: #EAF4EE;
+  --color-warn: #B5652F;
+  --color-warn-bg: #FDF3EC;
+  --color-line: #D8CFBB;
+  --color-line-light: #EBE5D7;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* Shadows & Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 8px rgba(27, 42, 74, 0.05);
+  --shadow-md: 0 8px 24px rgba(27, 42, 74, 0.08);
+  --shadow-lg: 0 16px 36px rgba(27, 42, 74, 0.12);
+  --shadow-seal: 0 12px 32px rgba(173, 138, 78, 0.3), inset 0 0 15px rgba(255, 248, 220, 0.6);
+
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Utility */
+.font-serif { font-family: var(--font-serif); }
+.font-mono { font-family: var(--font-mono); }
+.font-sans { font-family: var(--font-sans); }
+
+/* App Layout Container */
+.app-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2rem;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-ink), #0F1A30);
+  border: 2px solid var(--color-brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brass);
+  box-shadow: 0 0 10px var(--color-brass-glow);
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.brand-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--color-paper-subtle);
+  color: var(--color-brass-dark);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-line);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-nav-history {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-slate);
+  background: transparent;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-nav-history:hover {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-slate);
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screen Transitions */
+.screen {
+  display: none;
+  animation: fadeIn 0.35s ease-in-out forwards;
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Screen 1: Home Screen
+   ========================================================================== */
+.home-hero {
+  text-align: center;
+  padding: 3.5rem 2rem 3rem;
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-ink), var(--color-brass), var(--color-ink));
+}
+
+.hero-seal-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2A3D66 0%, #1B2A4A 100%);
+  border: 4px solid var(--color-brass);
+  box-shadow: var(--shadow-seal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brass);
+  position: relative;
+}
+
+.hero-seal-logo::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px dashed var(--color-brass);
+  border-radius: 50%;
+  animation: rotateSeal 25s linear infinite;
+}
+
+@keyframes rotateSeal {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.home-title {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+
+.home-tagline {
+  font-size: 1.15rem;
+  color: var(--color-slate);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.home-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Primary & Secondary Buttons */
+.btn-primary {
+  flex: 1;
+  min-width: 260px;
+  padding: 1.1rem 1.8rem;
+  background: var(--color-ink);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--color-ink-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-brass {
+  flex: 1;
+  min-width: 260px;
+  padding: 1.1rem 1.8rem;
+  background: var(--color-brass);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid var(--color-brass-dark);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.btn-brass:hover {
+  background: var(--color-brass-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-brass-glow);
+}
+
+.btn-secondary {
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: var(--color-paper-card);
+  border-color: var(--color-ink);
+}
+
+/* ==========================================================================
+   Screen Header & Progress Stepper
+   ========================================================================== */
+.wizard-header {
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wizard-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.wizard-step-title {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.wizard-step-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--color-paper-subtle);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-full);
+  color: var(--color-slate);
+}
+
+/* ==========================================================================
+   Screen 2: Department Selection Grid
+   ========================================================================== */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.dept-card {
+  background: var(--color-paper-card);
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.dept-card:hover {
+  border-color: var(--color-brass);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.dept-card.selected {
+  border-color: var(--color-ink);
+  background: #F4FAF6;
+  box-shadow: 0 0 0 2px var(--color-ink);
+}
+
+.dept-code {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brass-dark);
+  margin-bottom: 0.4rem;
+}
+
+.dept-name {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.35;
+}
+
+.dept-card-footer {
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-slate);
+  border-top: 1px solid var(--color-line-light);
+  padding-top: 0.75rem;
+}
+
+/* ==========================================================================
+   Screen 3: Student Details Form
+   ========================================================================== */
+.form-card {
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  max-width: 620px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
+}
+
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.form-input.font-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(27, 42, 74, 0.1);
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--color-slate);
+  margin-top: 0.4rem;
+}
+
+/* ==========================================================================
+   Screen 4: Semester Selection Grid
+   ========================================================================== */
+.sem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .sem-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.sem-btn {
+  background: var(--color-paper-card);
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.sem-btn:hover {
+  border-color: var(--color-brass);
+  background: var(--color-paper-subtle);
+  transform: translateY(-2px);
+}
+
+.sem-btn.selected {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: #FFFFFF;
+}
+
+.sem-number {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+
+.sem-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   Screen 5: Grade Entry Screen
+   ========================================================================== */
+.grade-entry-card {
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* Previous CGPA Block for Sem > 1 */
+.prev-cgpa-block {
+  background: var(--color-paper-subtle);
+  border: 1.5px dashed var(--color-brass);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .prev-cgpa-block {
+    grid-template-columns: 1fr;
+  }
+}
+
+.subject-table-container {
+  overflow-x: auto;
+}
+
+.subject-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.75rem;
+}
+
+.subject-table th {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-slate);
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+.subject-row {
+  background: var(--color-paper);
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.subject-row td {
+  padding: 1rem;
+  border-top: 1px solid var(--color-line-light);
+  border-bottom: 1px solid var(--color-line-light);
+}
+
+.subject-row td:first-child {
+  border-left: 1px solid var(--color-line-light);
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.subject-row td:last-child {
+  border-right: 1px solid var(--color-line-light);
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+}
+
+.subject-code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-brass-dark);
+}
+
+.subject-title {
+  font-weight: 600;
+  color: var(--color-ink);
+  font-size: 0.95rem;
+}
+
+.subject-title-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--color-ink);
+  background: #FFFFFF;
+  border: 1px solid var(--color-brass);
+  border-radius: var(--radius-sm);
+}
+
+.subject-category-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-paper-subtle);
+  color: var(--color-slate);
+  text-transform: uppercase;
+}
+
+.grade-select {
+  padding: 0.55rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  background: #FFFFFF;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.grade-select:focus {
+  border-color: var(--color-ink);
+  outline: none;
+}
+
+/* Special Status Toggle (SA / WC) */
+.special-status-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--color-slate);
+}
+
+.special-status-btn {
+  padding: 0.15rem 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-slate);
+}
+
+.special-status-btn.active {
+  background: var(--color-warn-bg);
+  border-color: var(--color-warn);
+  color: var(--color-warn);
+}
+
+/* Disabled Row for MC Courses */
+.subject-row.mc-row {
+  opacity: 0.65;
+  background: #EAE6DC;
+}
+
+.mc-note {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-slate);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Screen 6: Results Screen & Circular "Seal" Stamp
+   ========================================================================== */
+.results-card {
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.results-header {
+  text-align: center;
+  border-bottom: 2px solid var(--color-line-light);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.results-student-name {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 0.3rem;
+}
+
+.results-student-meta {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--color-slate);
+}
+
+/* Circular Seal Motif */
+.seal-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.circular-seal {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2A3E66 0%, #1B2A4A 70%, #0F192E 100%);
+  border: 7px solid var(--color-brass);
+  box-shadow: var(--shadow-seal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.circular-seal:hover {
+  transform: scale(1.03);
+}
+
+.circular-seal::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1.5px dashed rgba(216, 207, 187, 0.4);
+  border-radius: 50%;
+}
+
+.seal-top-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+  margin-bottom: 0.2rem;
+}
+
+.seal-cgpa-val {
+  font-family: var(--font-mono);
+  font-size: 3.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #FFFFFF;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.seal-bottom-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-line);
+  margin-top: 0.3rem;
+}
+
+/* Secondary Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+.stat-box {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.stat-val {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.stat-lbl {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-slate);
+
+}
+
+/* Pie Chart Container */
+.chart-section {
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 1.5rem;
+}
+
+.chart-canvas-wrapper {
+  width: 100%;
+  max-width: 380px;
+  height: 260px;
+}
+
+/* Quote Card */
+.quote-card {
+  background: #FAF7F0;
+  border-left: 4px solid var(--color-brass);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.quote-text {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.quote-author {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-brass-dark);
+  margin-top: 0.6rem;
+}
+
+/* Results Actions */
+.results-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* ==========================================================================
+   Screen 7: Thedal (தேடல்) AI Study Planner Chat UI
+   ========================================================================== */
+.chat-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1.5rem;
+  min-height: 600px;
+}
+
+@media (max-width: 850px) {
+  .chat-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chat-sidebar {
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-sidebar-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.context-card {
+  background: var(--color-paper-subtle);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.88rem;
+}
+
+.context-meta {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-slate);
+}
+
+.prompt-chips-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-slate);
+  margin-bottom: 0.75rem;
+}
+
+.prompt-chip {
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.85rem;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.prompt-chip:hover {
+  border-color: var(--color-brass);
+  background: #FFFFFF;
+}
+
+.chat-main {
+  background: var(--color-paper-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-height: 520px;
+}
+
+.chat-bubble {
+  max-width: 82%;
+  padding: 1.1rem 1.4rem;
+  border-radius: var(--radius-md);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.chat-bubble-ai {
+  align-self: flex-start;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  border-top-left-radius: 4px;
+}
+
+.chat-bubble-user {
+  align-self: flex-end;
+  background: var(--color-ink);
+  color: #FFFFFF;
+  border-top-right-radius: 4px;
+}
+
+.chat-input-area {
+  padding: 1rem 1.25rem;
+  background: var(--color-paper-subtle);
+  border-top: 1px solid var(--color-line);
+  display: flex;
+  gap: 0.75rem;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--color-brass);
+}
+
+.btn-send {
+  padding: 0.85rem 1.4rem;
+  background: var(--color-brass);
+  color: #FFFFFF;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-fast);
+}
+
+.btn-send:hover {
+  background: var(--color-brass-dark);
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-slate);
+  border-top: 1px solid var(--color-line-light);
+  margin-top: 3rem;
+}

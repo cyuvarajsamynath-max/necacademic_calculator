@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        body{
+            margin:0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background: #f4f4f4;
+        }
+
+        /* Sidebar */
+        .sidebar{
+            width: 220px;
+            background: #2c3e50;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul{
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li{
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover{
+            background: #34495e;
+        }
+
+        /* Main Content */
+        .main{
+            flex: 1;
+            padding: 30px;
+        }
+
+        .main h1{
+            margin-bottom: 20px;
+        }
+
+        .cards{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            width: 200px;
+            text-align: center;
+        }
+
+        button{
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background: #667eea;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: #764ba2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>My App</h2>
+        <ul>
+            <li>Home</li>
+            <li>Profile</li>
+            <li>Settings</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <h1>Welcome to the Home Page 🌟</h1>
+        <p>This is your main landing page after login. You can add content, stats, or features here.</p>
+
+        <div class="cards">
+            <div class="card">Users: 120</div>
+            <div class="card">Sales: $500</div>
+            <div class="card">Messages: 15</div>
+            <div class="card">Tasks: 8</div>
+        </div>
+
+        <button onclick="alert('Explore more features!')">Explore</button>
+    </div>
+
+</body>
+</html>
