@@ -1,42 +1,192 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --navy: #1e3a8a;
+  --navy-dark: #172a63;
+  --gold: #facc15;
+  --ink: #18213b;
+  --muted: #5b6478;
+  --bg: #f4f6fb;
+  --line: #d9deea;
+  --white: #ffffff;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
 }
 
+body.locked { overflow: hidden; }
+
+/* ---------- Splash ---------- */
 #splash {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #1e3a8a;
-  color: white;
+  inset: 0;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 18px;
+  border: 0;
+  background: var(--navy);
+  color: var(--white);
+  font: inherit;
   cursor: pointer;
-  z-index: 10;
   transition: transform 0.8s ease-in-out;
 }
+#splash[hidden] { display: none; }
+#splash.slide-up { transform: translateY(-100%); }
 
-#splash.slide-up {
-  transform: translateY(-100%);
+.logo { font-size: clamp(3rem, 10vw, 5rem); font-weight: 800; letter-spacing: -1px; }
+.logo span { color: var(--gold); }
+.splash-hint {
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  font-weight: 500;
+}
+#splash:hover .splash-hint { background: rgba(255, 255, 255, 0.12); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary { background: var(--navy); color: var(--white); }
+.btn-primary:hover { background: var(--navy-dark); box-shadow: 0 6px 16px rgba(30, 58, 138, 0.3); }
+
+.btn-outline { background: transparent; color: var(--navy); border-color: var(--navy); }
+.btn-outline:hover { background: var(--navy); color: var(--white); }
+
+.btn-quiet { background: transparent; color: var(--muted); }
+.btn-quiet:hover { background: #e6e9f2; color: var(--ink); }
+
+.btn-remove {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-remove:hover { background: #fde8e6; color: #b42318; }
+
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.btn-primary:focus-visible, .btn-outline:focus-visible { outline-color: var(--navy); }
+
+/* ---------- Header and hero ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5%;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.brand { font-size: 1.4rem; font-weight: 800; color: var(--navy); text-decoration: none; }
+.brand span { color: #c9a100; }
+.header-actions { display: flex; gap: 10px; }
+.header-actions .btn { min-height: 42px; padding: 0 18px; }
+
+.hero { max-width: 760px; margin: 0 auto; padding: 72px 5% 48px; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; letter-spacing: -1px; }
+.hero p { margin-top: 16px; max-width: 60ch; color: var(--muted); font-size: 1.1rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* ---------- Calculator ---------- */
+.calculator {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 5% 72px;
+  align-items: start;
 }
 
-.logo {
-  font-size: 4rem;
+.subjects-panel {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+}
+.subjects-panel h2 { font-size: 1.3rem; margin-bottom: 16px; }
+
+.row-head, .row {
+  display: grid;
+  grid-template-columns: 1fr 90px 110px 44px;
+  gap: 10px;
+  align-items: center;
+}
+.row-head { color: var(--muted); font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; }
+.row { margin-bottom: 10px; }
+
+input, select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+}
+input:hover, select:hover { border-color: #aab3cc; }
+input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2); }
+
+.panel-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+
+.result-panel {
+  position: sticky;
+  top: 90px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 14px;
+  padding: 28px 24px;
+}
+.result-label { color: #c7d2f0; font-weight: 500; }
+.gpa-value { font-size: 4.5rem; font-weight: 800; line-height: 1.1; color: var(--gold); }
+.gpa-note { margin-top: 4px; color: #c7d2f0; font-size: 0.95rem; }
+.result-panel dl { margin-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.25); }
+.result-panel dl div { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+.result-panel dt { color: #c7d2f0; }
+.result-panel dd { font-weight: 600; }
+
+.site-footer { padding: 24px 5%; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); }
+
+/* ---------- Phones ---------- */
+@media (max-width: 760px) {
+  .calculator { grid-template-columns: 1fr; }
+  .result-panel { position: static; order: -1; }
+  .row-head { display: none; }
+  .row { grid-template-columns: 1fr 1fr 44px; }
+  .row .subject-name { grid-column: 1 / -1; }
+  .hero { padding-top: 40px; }
 }
 
-.logo span {
-  color: #facc15;
-}
-
-#home {
-  padding: 40px;
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
 }
