@@ -3,20 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CGPA Calculator</title>
+  <title>CGPAHub | GPA and CGPA calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="locked">
 
-  <div id="splash">
-    <h1 class="logo">CGPA<span>Hub</span></h1>
-    <p>Click to continue</p>
-  </div>
+  <button type="button" id="splash" aria-label="Enter CGPAHub">
+    <span class="logo">CGPA<span>Hub</span></span>
+    <span class="splash-hint">Tap anywhere to start</span>
+  </button>
 
-  <main id="home">
-    <h2>Welcome</h2>
-    <p>This is the main page.</p>
+  <header class="site-header">
+    <a href="#" class="brand">CGPA<span>Hub</span></a>
+    <nav class="header-actions">
+      <button type="button" class="btn btn-outline">Log in</button>
+      <button type="button" class="btn btn-primary">Register</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Know your GPA before the results arrive.</h1>
+      <p>Add your subjects, pick your grades, and watch your GPA update as you go. Accounts that save your marks are coming next.</p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn btn-primary">Calculate my GPA</a>
+        <button type="button" class="btn btn-outline">Create account</button>
+      </div>
+    </section>
+
+    <section id="calculator" class="calculator">
+      <div class="subjects-panel">
+        <h2>Semester subjects</h2>
+        <div class="row-head" aria-hidden="true">
+          <span>Subject</span><span>Credits</span><span>Grade</span><span></span>
+        </div>
+        <div id="rows"></div>
+        <div class="panel-actions">
+          <button id="addRow" type="button" class="btn btn-outline">+ Add subject</button>
+          <button id="resetAll" type="button" class="btn btn-quiet">Clear all</button>
+        </div>
+      </div>
+
+      <aside class="result-panel" aria-live="polite">
+        <p class="result-label">Your GPA</p>
+        <p id="gpaValue" class="gpa-value">–</p>
+        <p id="gpaNote" class="gpa-note">Pick a grade for at least one subject.</p>
+        <dl>
+          <div><dt>Subjects counted</dt><dd id="countValue">0</dd></div>
+          <div><dt>Total credits</dt><dd id="creditValue">0</dd></div>
+        </dl>
+      </aside>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <p>Built as a learning project. Check your college's grade-point table before relying on the result.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
